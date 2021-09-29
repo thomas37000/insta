@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Home from './components/Home';
 import './App.css';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
       </header>
+      <Home />
     </div>
   );
 }
