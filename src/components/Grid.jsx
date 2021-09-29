@@ -8,20 +8,20 @@ const Grid = () => {
   const [instas, setInstas] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
-      )
-      .then((res) => {
-        console.log(res.data);
-        setInstas(res.data);
+    fetch(
+      'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('useEffect', data);
+        setInstas(data.instagram);
       });
   }, []);
 
   const fetchApi =
     instas.length > 0 &&
     instas.map((insta, id) => {
-      return <Card key={id} insta={insta} />;
+      return <Card key={id} {...insta} />;
     });
 
   return (
