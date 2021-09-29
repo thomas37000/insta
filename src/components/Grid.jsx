@@ -20,8 +20,8 @@ const Grid = () => {
 
   const fetchApi =
     instas.length > 0 &&
-    instas.map((insta, id) => {
-      return <Card key={id} {...insta} />;
+    instas.map((insta, i) => {
+      return <Card key={i} {...insta} />;
     });
 
   return (

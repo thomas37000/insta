@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Card.css';
 
 const Card = ({ img, name }) => {
   return (
     <div className="Card">
       <div className="CardImg">
-        <img src={img} alt={name} />
+        <img src={img} alt={name} className="cards-image" />
       </div>
-      <div className="name">{name}</div>
     </div>
   );
 };
