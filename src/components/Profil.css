@@ -1,7 +1,13 @@
-.divProfil {
+.profil-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  border: 1px solid tomato;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.divProfil {
   width: 155px;
   height: 155px;
   border-radius: 50%;
@@ -15,12 +21,22 @@
     #285aeb 90%
   );
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
-  margin: 1.5rem 1.5rem;
+  margin-left: 1.5rem;
 }
-
 .profil {
   width: 150px;
   height: 150px;
   border-radius: 50%;
 }
 
+.divProfil,
+.follow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.span-profil {
+  font-weight: bold;
+  margin-left: 3rem;
+}
