@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CardDogs from './CardDogs';
 import Card from './Card';
+import Profil from './Profil';
 import './Grid.css';
 
 const Grid = () => {
@@ -39,13 +40,14 @@ const Grid = () => {
 
   const fetchDogs =
     dogs.length > 0 &&
-    dogs.map((insta, dog, i) => {
-      return <CardDogs key={i} {...insta} />;
+    dogs.map((dog, i) => {
+      return <CardDogs key={i} {...dog} />;
     });
 
   return (
     <div>
       <div className="container">
+        <Profil />
         <div className="box">{fetchApi}</div>
         <div className="box">{fetchDogs}</div>
       </div>
