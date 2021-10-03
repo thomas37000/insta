@@ -1,0 +1,60 @@
+.App-header {
+  background-color: #fff;
+  min-height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: #333;
+  border-bottom: 1px solid lightgray;
+}
+
+.nav-icons {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+}
+
+.search-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  color: #262626;
+  outline: 0;
+  padding: 5px;
+  z-index: 2;
+}
+.span-input {
+  border-radius: 3px;
+  color: #8e8e8e;
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  cursor: text;
+  font-size: 14px;
+  font-weight: 300;
+  left: 0;
+  padding: 7px;
+  text-align: center;
+  top: 0;
+  z-index: 2;
+}
+.div-input {
+  display: -webkit-inline-box;
+}
+
+.search {
+  width: 12px;
+  height: 12px;
+}
+
+@media screen and (min-width: 200px) and (max-width: 640px) {
+  .profil {
+    position: absolute;
+    width: 91px;
+    height: 91px;
+  }
+}
