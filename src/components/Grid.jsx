@@ -48,8 +48,10 @@ const Grid = () => {
     <div>
       <div className="container">
         <Profil />
-        <div className="box">{fetchApi}</div>
-        <div className="box">{fetchDogs}</div>
+        <div className="box">
+          {fetchApi}
+          {fetchDogs}
+        </div>
       </div>
     </div>
   );
