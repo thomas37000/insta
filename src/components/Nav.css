@@ -42,6 +42,7 @@ input {
   top: 0;
   z-index: 2;
 }
+
 .div-input {
   display: -webkit-inline-box;
 }
@@ -57,4 +58,14 @@ input {
     width: 91px;
     height: 91px;
   }
+
+  .search-input {
+    display: none;
+  }
+
+  .nav-icons {
+    width: 200px;
+    margin-left: 20px;
+  }
+  
 }
