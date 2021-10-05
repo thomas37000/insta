@@ -58,7 +58,16 @@ const Profil = () => {
               </div>
               <div className="">Developper Web Junior from Nantes</div>
               <div className="">Javascript / React</div>
-              <diV className="github">https://github.com/thomas37000</diV>
+              <div className="github">
+                <a
+                  className="github-link"
+                  href="https://github.com/thomas37000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://github.com/thomas37000
+                </a>
+              </div>
             </div>
           </div>
         </div>
