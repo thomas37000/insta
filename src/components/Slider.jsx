@@ -61,10 +61,7 @@ const Slider = () => {
       >
         <div className="card-slider-container">
           <CardSlider key={i} {...item} />
-          {/* <CardTextSlider /> */}
         </div>
-        {/* <img src={item.img} alt={item.name} /> */}
-        {/* <img src={item.image.url} alt={item.name} className="cards-image" /> */}
         <CarouselCaption captionText={item.name} captionHeader={item.name} />
       </CarouselItem>
     );
@@ -87,13 +84,11 @@ const Slider = () => {
         direction="prev"
         directionText="Previous"
         onClickHandler={previous}
-        style={{backgroundColor:'red'}}
       />
       <CarouselControl
         direction="next"
         directionText="Next"
         onClickHandler={next}
-        style={{backgroundColor:'red'}}
       />
     </Carousel>
   );
