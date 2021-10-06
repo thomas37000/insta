@@ -5,7 +5,10 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
+  CardText,
 } from 'reactstrap';
+import CardSlider from './Card/CardSlider';
+import CardTextSlider from './Card/CardText';
 
 const Slider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -14,21 +17,22 @@ const Slider = () => {
 
   useEffect(() => {
     fetch(
-      // 'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
-      'https://api.thedogapi.com/v1/breeds'
+      'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
+      //'https://api.thedogapi.com/v1/breeds'
     )
       .then((res) => res.json())
       .then((data) => {
         // console.log('useEffect', data);
-        // setItems(data.instagram);
-        setItems(data);
+        setItems(data.instagram);
+        // setItems(data);
       });
   }, []);
 
-  // const fetchDogs =
+  // const fetchApiSlider =
   //   items.length > 0 &&
-  //   items.map((dog, i) => {
-  //     return <CardDogs key={i} {...dog} />;
+  //   items.map((insta, dog, i) => {
+  //     return <CardSlider key={i} {...insta} />;
+  //     //  return <CardSlider key={i} {...items} />;
   //   });
 
   const next = () => {
@@ -48,15 +52,19 @@ const Slider = () => {
     setActiveIndex(newIndex);
   };
 
-  const slides = items.map((item) => {
+  const slides = items.map((item, i) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item.img}
       >
+        <div className="card-slider-container">
+          <CardSlider key={i} {...item} />
+          {/* <CardTextSlider /> */}
+        </div>
         {/* <img src={item.img} alt={item.name} /> */}
-        <img src={item.image.url} alt={item.name} className="cards-image" />
+        {/* <img src={item.image.url} alt={item.name} className="cards-image" /> */}
         <CarouselCaption captionText={item.name} captionHeader={item.name} />
       </CarouselItem>
     );
@@ -79,11 +87,13 @@ const Slider = () => {
         direction="prev"
         directionText="Previous"
         onClickHandler={previous}
+        style={{backgroundColor:'red'}}
       />
       <CarouselControl
         direction="next"
         directionText="Next"
         onClickHandler={next}
+        style={{backgroundColor:'red'}}
       />
     </Carousel>
   );

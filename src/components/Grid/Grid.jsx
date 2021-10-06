@@ -34,7 +34,7 @@ const Grid = () => {
 
   const fetchApi =
     instas.length > 0 &&
-    instas.map((insta, dog, i) => {
+    instas.map((insta, i) => {
       return <Card key={i} {...insta} />;
     });
 

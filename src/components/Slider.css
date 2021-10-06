@@ -1,0 +1,9 @@
+.carousel-control-prev .carousel-control-prev-icon {
+  background-color: lightgreen!important;
+  color: red!important;
+}
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
