@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import CardDogs from './CardDogs';
-import Card from './Card';
-import Profil from './Profil';
+import CardDogs from '../Card/CardDogs';
+import Card from '../Card/Card';
+import Profil from '../Profil/Profil';
 import './Grid.css';
 
 const Grid = () => {

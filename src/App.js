@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './components/Home';
-import Grid from './components/Grid';
-import Nav from './components/Nav';
+import Grid from './components/Grid/Grid';
+import Nav from './components/Nav/Nav';
 import './App.css';
 import Slider from './components/Slider';
 
