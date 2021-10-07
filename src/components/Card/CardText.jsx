@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Card.css';
 
 const CardTextSlider = ({ img, name }) => {
-  const [profil, setProfil] = useState('cool-cat');
+  const [username, setUsername] = useState('cool-cat');
 
   // const [instas, setInstas] = useState([]);
 
@@ -32,7 +32,7 @@ const CardTextSlider = ({ img, name }) => {
   return (
     <>
       <div className="card-text">
-        <div className="card-header-text">{profil}  </div>
+        <div className="card-header-text">{username}  </div>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum commodi
         eveniet eos veritatis ipsam animi adipisci rem iusto alias voluptas, est
         eius deserunt modi recusandae nam, maiores voluptatum tenetur?

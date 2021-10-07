@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Profil.css';
 
 const Profil = () => {
-  const [profil, setProfil] = useState('cool-cat');
+  const [username, setUsername] = useState('cool-cat');
+
   return (
     <>
       <div className="profil-container">
@@ -13,13 +14,13 @@ const Profil = () => {
           <img
             src="https://c.pxhere.com/photos/4f/ee/photo-29014.jpg!d"
             className="profil"
-            alt={profil}
+            alt={username}
           />
         </div>
         <div className="profil-description">
           <div className="profil-header">
             <div className="profil-name">
-              <h2>{profil}</h2>
+              <h2>{username}</h2>
               <div className="btn-profil">
                 <button
                   type="submit"
@@ -54,7 +55,7 @@ const Profil = () => {
 
             <div className="profil-desc">
               <div>
-                <h1 className="desc-name">{profil}</h1>
+                <h1 className="desc-name">{username}</h1>
               </div>
               <div className="">Developper Web Junior from Nantes</div>
               <div className="">Javascript / React</div>
