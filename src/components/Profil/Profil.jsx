@@ -1,26 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Profil.css';
 
-const Profil = () => {
-  const [username, setUsername] = useState('cool-cat');
+function Profil() {
+  // const { id } = useParams();
+  // console.log('id', id);
+  const [usernames, setUsernames] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json/${id}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log('users', data.users);
+  //       setUsernames(data.users);
+  //     });
+  // }, [id]);
+
+  const { img, username } = usernames;
+
+  // const fetchApi =
+  //   usernames.length > 0 &&
+  //   usernames.map((user, i) => {
+  //     return (
+  //       <>
+  //         {' '}
+  //         <div key={i}>
+  //           <img src={user.img} className="profil" alt={user.username} />
+  //           {user.username}
+  //         </div>
+  //       </>
+  //     );
+  //   });
 
   return (
     <>
       <div className="profil-container">
         <div className="divProfil">
-          <img
-            src="https://c.pxhere.com/photos/4f/ee/photo-29014.jpg!d"
-            className="profil"
-            alt={username}
-          />
+          <img src={img} className="profil" alt={username} />
         </div>
         <div className="profil-description">
           <div className="profil-header">
             <div className="profil-name">
               <h2>{username}</h2>
+              {/* <div>{fetchApi}</div> */}
               <div className="btn-profil">
                 <button
                   type="submit"
@@ -75,7 +102,7 @@ const Profil = () => {
       </div>
     </>
   );
-};
+}
 
 Profil.proptypes = {};
 

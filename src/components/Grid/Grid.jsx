@@ -8,9 +8,10 @@ import './Grid.css';
 const Grid = () => {
   const [instas, setInstas] = useState([]);
   const [dogs, setDogs] = useState([]);
+  const [usernames, setUsernames] = useState([]);
 
-  useEffect(() => {
-    fetch(
+  const loadData = async () => {
+    await fetch(
       'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
     )
       .then((res) => res.json())
@@ -18,10 +19,10 @@ const Grid = () => {
         // console.log('useEffect', data);
         setInstas(data.instagram);
       });
-  }, []);
+  };
 
-  useEffect(() => {
-    fetch('https://api.thedogapi.com/v1/breeds')
+  const loadDataDogs = async () => {
+    await fetch('https://api.thedogapi.com/v1/breeds')
       .then((res) => res.json())
       .then((data) => {
         // console.log('useEffect', data);
@@ -30,6 +31,23 @@ const Grid = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const loadDataUsers = async () => {
+    await fetch(
+      `https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('users', data.users);
+        setUsernames(data.users);
+      });
+  };
+
+  useEffect(() => {
+    loadData();
+    loadDataDogs();
+    loadDataUsers();
   }, []);
 
   const fetchApi =
@@ -44,11 +62,26 @@ const Grid = () => {
       return <CardDogs key={i} {...dog} />;
     });
 
+  const fetchUsers =
+    usernames.length > 0 &&
+    usernames.map((user, i) => {
+      return (
+        <>
+          {' '}
+          <div key={i}>
+            <img src={user.img} className="profil" alt={user.username} />
+            {user.username}
+          </div>
+        </>
+      );
+    });
+
   return (
     <div>
       <div className="container">
-        <Profil />
+        {/* <Profil username={name} /> */}
         <div className="box">
+          {fetchUsers}
           {fetchApi}
           {fetchDogs}
         </div>
