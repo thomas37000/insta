@@ -6,36 +6,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Profil.css';
 
 function Profil() {
-  // const { id } = useParams();
-  // console.log('id', id);
-  const [usernames, setUsernames] = useState([]);
+  const { id } = useParams();
+  console.log('id', id);
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json/${id}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log('users', data.users);
-  //       setUsernames(data.users);
-  //     });
-  // }, [id]);
+  const [usernames, setUsernames] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getProfil = async () => {
+      try {
+        const res = await fetch(
+          'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
+        );
+        setUsernames(
+          res.data.users.filter((user) => {
+            return user.id === parseInt(id);
+          })[0]
+        );
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getProfil();
+  }, [id]);
+
+  if (!usernames) return <div>err...</div>;
+  if (loading) return <div>Loading...</div>;
 
   const { img, username } = usernames;
-
-  // const fetchApi =
-  //   usernames.length > 0 &&
-  //   usernames.map((user, i) => {
-  //     return (
-  //       <>
-  //         {' '}
-  //         <div key={i}>
-  //           <img src={user.img} className="profil" alt={user.username} />
-  //           {user.username}
-  //         </div>
-  //       </>
-  //     );
-  //   });
 
   return (
     <>
@@ -47,7 +48,6 @@ function Profil() {
           <div className="profil-header">
             <div className="profil-name">
               <h2>{username}</h2>
-              {/* <div>{fetchApi}</div> */}
               <div className="btn-profil">
                 <button
                   type="submit"

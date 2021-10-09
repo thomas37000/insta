@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CardDogs from '../Card/CardDogs';
 import Card from '../Card/Card';
 import Profil from '../Profil/Profil';
+import Nav from '../Nav/Nav';
 import './Grid.css';
 
-const Grid = () => {
+const Grid = ({ id }) => {
   const [instas, setInstas] = useState([]);
   const [dogs, setDogs] = useState([]);
   const [usernames, setUsernames] = useState([]);
@@ -35,7 +37,7 @@ const Grid = () => {
 
   const loadDataUsers = async () => {
     await fetch(
-      `https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json`
+      'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
     )
       .then((res) => res.json())
       .then((data) => {
@@ -67,10 +69,13 @@ const Grid = () => {
     usernames.map((user, i) => {
       return (
         <>
-          {' '}
-          <div key={i}>
-            <img src={user.img} className="profil" alt={user.username} />
-            {user.username}
+          <div className="all-users">
+            <Link to={`/p/${id}`}>
+              <div key={i}>
+                <img src={user.img} className="profil" alt={user.username} />
+                {user.username}
+              </div>
+            </Link>
           </div>
         </>
       );
@@ -78,10 +83,11 @@ const Grid = () => {
 
   return (
     <div>
+      <Nav />
       <div className="container">
-        {/* <Profil username={name} /> */}
+        <Profil />
+        {fetchUsers}
         <div className="box">
-          {fetchUsers}
           {fetchApi}
           {fetchDogs}
         </div>
@@ -90,6 +96,8 @@ const Grid = () => {
   );
 };
 
-Grid.propTypes = {};
+Grid.propTypes = {
+  id: PropTypes.number,
+};
 
 export default Grid;

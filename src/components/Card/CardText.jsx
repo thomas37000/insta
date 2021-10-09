@@ -1,42 +1,59 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const CardTextSlider = ({ img, name }) => {
-  const [username, setUsername] = useState('cool-cat');
+const CardTextSlider = () => {
+  const { id } = useParams();
+  console.log('id', id);
 
-  // const [instas, setInstas] = useState([]);
+  const [usernames, setUsernames] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   fetch(
-  //     'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // console.log('useEffect', data);
-  //       setInstas(data.instagram);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const getProfil = async () => {
+      try {
+        const res = await fetch(
+          'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
+        );
+        // obligé de mettre un parseInt pour récupérer l' id
+        // car il le considère comme du texte
+        setUsernames(
+          res.data.users.filter((user) => {
+            return user.id === parseInt(id);
+          })[0]
+        );
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getProfil();
+  }, [id]);
 
-  // const fetchHeader =
-  //   instas.length > 0 &&
-  //   instas.map((insta, i) => {
-  //     return (
-  //       <div className="card-header-text" key={i}>
-  //         <img src={img} alt={name} className="cards-image" />
-  //       </div>
-  //     );
-  //     // return <Card key={i} {...insta} />;
-  //   });
+  console.log('user', usernames);
+
+  if (!usernames) return <div>err...</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error)
+    return (
+      <div>
+        Error...
+        <Link to="/">
+          <div>Home</div>
+        </Link>
+      </div>
+    );
+
+  const { img, username } = usernames;
 
   return (
     <>
       <div className="card-text">
-        <div className="card-header-text">{username}  </div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum commodi
-        eveniet eos veritatis ipsam animi adipisci rem iusto alias voluptas, est
-        eius deserunt modi recusandae nam, maiores voluptatum tenetur?
-        Voluptatem.
+        <div className="card-header-text">{username} </div>
+        <img src={img} alt={username} className="" />
       </div>
     </>
   );
