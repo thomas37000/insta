@@ -8,8 +8,7 @@ export default function CardUfo({ id, image, name }) {
     <>
       <div className="Card">
         <div className="CardImg">
-          <img src={image} alt="" />
-          <div className="ufoLinkName">{name}</div>
+          <img src={image} alt={name} className="cards-image" />
         </div>
       </div>
     </>

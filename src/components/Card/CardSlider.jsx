@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Link, useParams } from 'react-router-dom';
-import './Card.css';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import CardTextSlider from './CardText';
+import './Card.css';
 
 const CardSlider = ({ img, image, name }) => {
   const { id } = useParams();
@@ -12,17 +13,34 @@ const CardSlider = ({ img, image, name }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   const getProfil = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
+  //       );
+  //       setUsernames(
+  //         res.data.users.filter((user) => {
+  //           return user.id === parseInt(id);
+  //         })[0]
+  //       );
+  //     } catch (error) {
+  //       setError(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getProfil();
+  // }, [id]);
+
   useEffect(() => {
     const getProfil = async () => {
       try {
-        const res = await fetch(
-          'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
+        const res = await axios.get(
+          `https://spaceprotectionalienapi.herokuapp.com/alien/${id}`
         );
-        setUsernames(
-          res.data.users.filter((user) => {
-            return user.id === parseInt(id);
-          })[0]
-        );
+
+        setUsernames(res.data);
       } catch (error) {
         setError(error);
       } finally {

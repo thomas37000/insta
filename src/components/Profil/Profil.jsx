@@ -1,53 +1,65 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+// import { useParams } from 'react-router-dom';
 import { faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Profil.css';
 
-function Profil() {
-  const { id } = useParams();
-  console.log('id', id);
-
-  const [usernames, setUsernames] = useState([]);
+function Profil(id) {
+  // const { id } = useParams();
+  // const [usernames, setUsernames] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [ovnis, setOvnis] = useState({});
+
+  const loadUfoApi = async () => {
+    await axios
+      .get('https://spaceprotectionalienapi.herokuapp.com/alien/')
+      .then((res) => {
+        setOvnis(res.data);
+        console.log('ovni api', res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-    const getProfil = async () => {
-      try {
-        const res = await fetch(
-          'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
-        );
-        setUsernames(
-          res.data.users.filter((user) => {
-            return user.id === parseInt(id);
-          })[0]
-        );
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getProfil();
-  }, [id]);
+    loadUfoApi();
+    randomUser();
+  }, []);
 
-  if (!usernames) return <div>err...</div>;
+  const fetchOvnis =
+    ovnis.length > 0 &&
+    ovnis.map((ovni) => {
+      return (
+        <>
+          <Link to={`/p/${id}`}>
+            <div className="divProfil">
+              <img src={ovni.image} className="profil" alt={ovni.name} />
+            </div>
+          </Link>
+        </>
+      );
+    });
+
+  function randomUser() {
+    const randomUfo = Math.floor(Math.random() * ovnis.length);
+    return ovnis[randomUfo];
+  }
+
   if (loading) return <div>Loading...</div>;
-
-  const { img, username } = usernames;
 
   return (
     <>
       <div className="profil-container">
-        <div className="divProfil">
-          <img src={img} className="profil" alt={username} />
-        </div>
+        {fetchOvnis}
         <div className="profil-description">
           <div className="profil-header">
             <div className="profil-name">
-              <h2>{username}</h2>
+              <h2>{name}</h2>
               <div className="btn-profil">
                 <button
                   type="submit"
@@ -82,7 +94,7 @@ function Profil() {
 
             <div className="profil-desc">
               <div>
-                <h1 className="desc-name">{username}</h1>
+                <h1 className="desc-name">{name}</h1>
               </div>
               <div className="">Developper Web Junior from Nantes</div>
               <div className="">Javascript / React</div>

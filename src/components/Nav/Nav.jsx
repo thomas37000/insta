@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   faCompass,
@@ -38,9 +38,12 @@ const Nav = () => {
           <div className="nav-links">
             <FontAwesomeIcon icon={faHome} />
           </div>
-          <div className="nav-links">
-            <FontAwesomeIcon icon={faPaperPlane} />
-          </div>
+          <Link to="/p/">
+            <div className="nav-links">
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </div>
+          </Link>
+
           <div className="nav-links">
             <FontAwesomeIcon icon={faCompass} />
           </div>

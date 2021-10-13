@@ -8,56 +8,71 @@ import Profil from '../Profil/Profil';
 import Nav from '../Nav/Nav';
 import './Grid.css';
 import CardUfo from '../Card/CardUfo';
+import Skeleton from '../Card/Skeleton';
 
 const Grid = ({ id }) => {
-  const [instas, setInstas] = useState([]);
-  const [dogs, setDogs] = useState([]);
+  const [instas, setInstas] = useState(null);
+  const [dogs, setDogs] = useState(null);
   const [usernames, setUsernames] = useState([]);
   const [ovnis, setOvnis] = useState({});
 
   const loadUfoApi = async () => {
-    await axios
-      .get('https://spaceprotectionalienapi.herokuapp.com/alien/')
-      .then((res) => {
-        setOvnis(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setTimeout(async () => {
+      const res = await axios.get(
+        'https://spaceprotectionalienapi.herokuapp.com/alien/'
+      );
+      const data = await res;
+      setOvnis(res.data);
+    }, 2000);
   };
 
-  const loadData = async () => {
-    await fetch(
-      'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log('useEffect', data);
-        setInstas(data.instagram);
-      });
+  const loadData = () => {
+    setTimeout(async () => {
+      const res = await fetch(
+        'https://raw.githubusercontent.com/thomas37000/insta/master/fake-api.json'
+      );
+      const data = await res
+        .json()
+        .then((data) => {
+          // console.log('useEffect', data);
+          setInstas(data.instagram);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
   };
 
-  const loadDataDogs = async () => {
-    await fetch('https://api.thedogapi.com/v1/breeds')
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log('useEffect', data);
-        setDogs(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const loadDataDogs = () => {
+    setTimeout(async () => {
+      const res = await fetch('https://api.thedogapi.com/v1/breeds');
+      const data = await res
+        .json()
+        .then((data) => {
+          // console.log('useEffect', data);
+          setDogs(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
   };
 
   const loadDataUsers = async () => {
-    await fetch(
-      'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('users', data.users);
-        setUsernames(data.users);
-      });
+    setTimeout(async () => {
+      const res = await fetch(
+        'https://raw.githubusercontent.com/thomas37000/insta/master/fake-users.json'
+      );
+      const data = await res
+        .json()
+        .then((data) => {
+          console.log('users', data.users);
+          setUsernames(data.users);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
   };
 
   useEffect(() => {
@@ -68,13 +83,13 @@ const Grid = ({ id }) => {
   }, []);
 
   const fetchApi =
-    instas.length > 0 &&
+    instas &&
     instas.map((insta, i) => {
       return <Card key={i} {...insta} />;
     });
 
   const fetchDogs =
-    dogs.length > 0 &&
+    dogs &&
     dogs.map((dog, i) => {
       return <CardDogs key={i} {...dog} />;
     });
@@ -107,11 +122,14 @@ const Grid = ({ id }) => {
       <Nav />
       <div className="container">
         <Profil />
-        {fetchUsers}
+        {/* {fetchUsers} */}
         <div className="box">
           {fetchApi}
+          {!instas && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}
           {fetchOvnis}
+          {!ovnis && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}
           {fetchDogs}
+          {!dogs && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}
         </div>
       </div>
     </div>
