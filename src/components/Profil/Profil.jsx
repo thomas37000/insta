@@ -36,11 +36,69 @@ function Profil(id) {
     ovnis.map((ovni) => {
       return (
         <>
-          <Link to={`/p/${id}`}>
+        
             <div className="divProfil">
               <img src={ovni.image} className="profil" alt={ovni.name} />
             </div>
-          </Link>
+            <div className="profil-description">
+              <div className="profil-header">
+                <div className="profil-name">
+                  <h2>{ovni.name}</h2>
+                  <div className="btn-profil">
+                    <button
+                      type="submit"
+                      className="follow-me"
+                      // onClick={()=>()}
+                    >
+                      Follow
+                    </button>
+                    <button
+                      type="button"
+                      className="select"
+                      // onClick={()=>()}
+                    >
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className="chevron"
+                      />
+                    </button>
+                  </div>
+                  <FontAwesomeIcon icon={faEllipsisH} className="ellipsis" />
+                </div>
+              </div>
+              <div className="desc-container">
+                <div className="follow">
+                  <div className="">
+                    <span className="span-profil">23</span> posts
+                  </div>
+                  <div className="">
+                    <span className="span-profil">12O</span> followers
+                  </div>
+                  <div className="">
+                    <span className="span-profil">221</span> following
+                  </div>
+                </div>
+
+                <div className="profil-desc">
+                  <div>
+                    <h1 className="desc-name">{ovni.name}</h1>
+                  </div>
+                  <div className="">Developper Web Junior from Nantes</div>
+                  <div className="">Javascript / React</div>
+                  <div className="github">
+                    <a
+                      className="github-link"
+                      href="https://github.com/thomas37000"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://github.com/thomas37000
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
         </>
       );
     });
@@ -54,64 +112,7 @@ function Profil(id) {
 
   return (
     <>
-      <div className="profil-container">
-        {fetchOvnis}
-        <div className="profil-description">
-          <div className="profil-header">
-            <div className="profil-name">
-              <h2>{name}</h2>
-              <div className="btn-profil">
-                <button
-                  type="submit"
-                  className="follow-me"
-                  // onClick={()=>()}
-                >
-                  Follow
-                </button>
-                <button
-                  type="button"
-                  className="select"
-                  // onClick={()=>()}
-                >
-                  <FontAwesomeIcon icon={faChevronDown} className="chevron" />
-                </button>
-              </div>
-              <FontAwesomeIcon icon={faEllipsisH} className="ellipsis" />
-            </div>
-          </div>
-          <div className="desc-container">
-            <div className="follow">
-              <div className="">
-                <span className="span-profil">23</span> posts
-              </div>
-              <div className="">
-                <span className="span-profil">12O</span> followers
-              </div>
-              <div className="">
-                <span className="span-profil">221</span> following
-              </div>
-            </div>
-
-            <div className="profil-desc">
-              <div>
-                <h1 className="desc-name">{name}</h1>
-              </div>
-              <div className="">Developper Web Junior from Nantes</div>
-              <div className="">Javascript / React</div>
-              <div className="github">
-                <a
-                  className="github-link"
-                  href="https://github.com/thomas37000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://github.com/thomas37000
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="profil-container">{fetchOvnis[2]}</div>
     </>
   );
 }

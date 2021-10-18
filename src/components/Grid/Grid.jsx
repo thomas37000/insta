@@ -120,7 +120,7 @@ const Grid = ({ id }) => {
   return (
     <div>
       <Nav />
-      <div className="container">
+      <div className="insta-container">
         <Profil />
         {/* {fetchUsers} */}
         <div className="box">
