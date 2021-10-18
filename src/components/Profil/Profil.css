@@ -49,15 +49,13 @@
 }
 
 .profil-name {
-  display: ruby;
-  justify-content: space-around;
+  display: flex;
   align-items: center;
-  width: 470px;
-  height: 50px;
 }
 
 .follow-me,
-.select {
+.select,
+.btn-ellipsis {
   height: 30px;
   background-color: #0095f6;
   color: #f1f1f1;
@@ -96,20 +94,51 @@
     position: fixed;
     top: 75px;
     left: -60px;
-    width: 95px;
-    height: 95px;
+    width: 77px;
+    height: 77px;
   }
 
   .profil {
     position: absolute;
-    width: 91px;
-    height: 91px;
+    width: 77px;
+    height: 77px;
   }
 
-  .profil-header {
+  .profil-description {
+    margin-bottom: 3rem;
+  }
+
+  .profil-header,
+  .profil-name,
+  .follow {
+    width: 500px;
+  }
+
+  .btn-profil {
+    display: flex;
+  }
+
+  .profil-name {
     display: grid;
-    flex-basis: 0;
-    -webkit-box-flex: 1;
-    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+  }
+
+  .profil-desc {
+    margin-top: 2.5rem;
+  }
+
+  .follow {
+    position: absolute;
+    height: 60px;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid rgba(var(--b38, 219, 219, 219), 1);
+    border-bottom: 1px solid rgba(var(--b38, 219, 219, 219), 1);
+  }
+  
+  .desc-name {
+    margin-top: 1rem;
   }
 }

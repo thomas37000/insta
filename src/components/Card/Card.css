@@ -89,5 +89,6 @@
   .cards-image {
     width: 128px;
     height: 128px;
+    margin: 1px;
   }
 }
