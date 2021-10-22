@@ -5,6 +5,7 @@ import axios from 'axios';
 // import { useParams } from 'react-router-dom';
 import { faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Skeleton2 from './Skeleton2';
 import './Profil.css';
 
 function Profil(id) {
@@ -35,6 +36,7 @@ function Profil(id) {
     ovnis.length > 0 &&
     ovnis.map((ovni) => {
       return (
+        // return <Profil key={i} {...ovni} />;
         <>
           <div className="divProfil">
             <img src={ovni.image} className="profil" alt={ovni.name} />
@@ -113,7 +115,10 @@ function Profil(id) {
 
   return (
     <>
-      <div className="profil-container">{fetchOvnis[2]}</div>
+      <div className="profil-container">
+        {fetchOvnis[2]}{' '}
+        {!ovnis && [1].map((i) => <Skeleton2 key={i} />)}
+      </div>
     </>
   );
 }

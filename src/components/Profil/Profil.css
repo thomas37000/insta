@@ -85,6 +85,47 @@
   word-wrap: break-word;
 }
 
+.skeleton2 {
+  position: relative;
+  overflow: hidden;
+  background-color: #c1c1c1;
+}
+
+.skeleton2.img {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+}
+
+.skeleton2.username {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+}
+
+.skeleton2::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* background-color ne marche pas */
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #dedede 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @media screen and (min-width: 200px) and (max-width: 640px) {
   .profil-container {
     display: inline-flex;
@@ -137,7 +178,7 @@
     border-top: 1px solid rgba(var(--b38, 219, 219, 219), 1);
     border-bottom: 1px solid rgba(var(--b38, 219, 219, 219), 1);
   }
-  
+
   .desc-name {
     margin-top: 1rem;
   }

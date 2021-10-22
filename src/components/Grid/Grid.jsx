@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import CardDogs from '../Card/CardDogs';
 import Card from '../Card/Card';
-import Profil from '../Profil/Profil';
 import Nav from '../Nav/Nav';
-import './Grid.css';
 import CardUfo from '../Card/CardUfo';
 import Skeleton from '../Card/Skeleton';
+import Skeleton2 from '../Profil/Skeleton2';
+import './Grid.css';
+import CardProfil from '../Profil/CardProfil';
 
 const Grid = ({ id }) => {
   const [instas, setInstas] = useState(null);
   const [dogs, setDogs] = useState(null);
-  const [usernames, setUsernames] = useState([]);
+  const [usernames, setUsernames] = useState(null);
   const [ovnis, setOvnis] = useState({});
 
   const loadUfoApi = async () => {
@@ -101,28 +102,18 @@ const Grid = ({ id }) => {
     });
 
   const fetchUsers =
-    usernames.length > 0 &&
+    usernames &&
     usernames.map((user, i) => {
-      return (
-        <>
-          <div className="all-users">
-            <Link to={`/p/${id}`}>
-              <div key={i}>
-                <img src={user.img} className="profil" alt={user.username} />
-                {user.username}
-              </div>
-            </Link>
-          </div>
-        </>
-      );
+      return <CardProfil key={i} {...user} />;
     });
 
   return (
     <div>
       <Nav />
       <div className="insta-container">
-        <Profil />
-        {/* {fetchUsers} */}
+        {/* {fetchUsers[1]} */}
+        {fetchUsers}
+        {!usernames && [1].map((i) => <Skeleton2 key={i} />)}
         <div className="box">
           {fetchApi}
           {!instas && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}

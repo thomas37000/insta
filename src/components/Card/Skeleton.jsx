@@ -1,6 +1,6 @@
 import React from 'react';
-import './Card.css';
 import CardSkeleton from './CardSkeleton';
+import './Card.css';
 
 const Skeleton = () => {
   return (
