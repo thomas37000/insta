@@ -4,16 +4,18 @@ import { faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Profil.css';
 
-const CardProfil = ({ img, username }) => {
+const CardProfil = ({ img, image, name, username }) => {
   return (
     <>
       <div className="divProfil">
-        <img src={img} className="profil" alt={username} />
+        {/* <img src={img} className="profil" alt={username} /> */}
+        <img src={image} className="profil" alt={name} />        
       </div>
       <div className="profil-description">
         <div className="profil-header">
           <div className="profil-name">
-            <h2>{username}</h2>
+            {/* <h2>{username}</h2> */}
+            <h2>{name}</h2>
             <div className="btn-profil">
               <button
                 type="submit"
@@ -54,7 +56,8 @@ const CardProfil = ({ img, username }) => {
 
           <div className="profil-desc">
             <div>
-              <h1 className="desc-name">{username}</h1>
+              {/* <h1 className="desc-name">{username}</h1> */}
+              <h1 className="desc-name">{name}</h1>
             </div>
             <div className="">Developper Web Junior from Nantes</div>
             <div className="">Javascript / React</div>
@@ -77,6 +80,8 @@ const CardProfil = ({ img, username }) => {
 
 CardProfil.propTypes = {
   img: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };
 

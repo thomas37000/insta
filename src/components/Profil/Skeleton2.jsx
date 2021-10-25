@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import ProfilSkeleton from './ProfilSkeleton';
 import './Profil.css';
 

@@ -8,13 +8,15 @@ import Nav from '../Nav/Nav';
 import CardUfo from '../Card/CardUfo';
 import Skeleton from '../Card/Skeleton';
 import Skeleton2 from '../Profil/Skeleton2';
-import './Grid.css';
 import CardProfil from '../Profil/CardProfil';
+import CardRickAndMorty from '../Card/CardRickAndMorty';
+import './Grid.css';
 
 const Grid = ({ id }) => {
   const [instas, setInstas] = useState(null);
   const [dogs, setDogs] = useState(null);
   const [usernames, setUsernames] = useState(null);
+  const [mortys, setMortys] = useState([]);
   const [ovnis, setOvnis] = useState({});
 
   const loadUfoApi = async () => {
@@ -50,7 +52,7 @@ const Grid = ({ id }) => {
       const data = await res
         .json()
         .then((data) => {
-          // console.log('useEffect', data);
+          // console.log('dogs', data);
           setDogs(data);
         })
         .catch((err) => {
@@ -76,11 +78,27 @@ const Grid = ({ id }) => {
     }, 2000);
   };
 
+  const loadDataRickAndMorty = () => {
+    setTimeout(async () => {
+      const res = await fetch('https://rickandmortyapi.com/api/character/');
+      const data = await res
+        .json()
+        .then((data) => {
+          // console.log('Rick & Morty', data.results);
+          setMortys(data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
+  };
+
   useEffect(() => {
     loadData();
     loadDataDogs();
     loadDataUsers();
     loadUfoApi();
+    loadDataRickAndMorty();
   }, []);
 
   const fetchApi =
@@ -107,14 +125,23 @@ const Grid = ({ id }) => {
       return <CardProfil key={i} {...user} />;
     });
 
+  const fetchMorty =
+    mortys.length > 0 &&
+    mortys.map((morty, i) => {
+      return <CardRickAndMorty key={i} {...morty} />;
+    });
+
   return (
     <div>
       <Nav />
       <div className="insta-container">
         {/* {fetchUsers[1]} */}
-        {fetchUsers}
-        {!usernames && [1].map((i) => <Skeleton2 key={i} />)}
+        {/* {fetchUsers} */}
+        {/* {!usernames && [1].map((i) => <Skeleton2 key={i} />)} */}
+
         <div className="box">
+          {fetchMorty}
+          {!mortys && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}
           {fetchApi}
           {!instas && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}
           {fetchOvnis}
