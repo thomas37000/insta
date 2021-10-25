@@ -10,12 +10,13 @@ import Skeleton from '../Card/Skeleton';
 import Skeleton2 from '../Profil/Skeleton2';
 import CardProfil from '../Profil/CardProfil';
 import CardRickAndMorty from '../Card/CardRickAndMorty';
+import CardMorty from '../Card/CardMorty';
 import './Grid.css';
 
 const Grid = ({ id }) => {
   const [instas, setInstas] = useState(null);
   const [dogs, setDogs] = useState(null);
-  const [usernames, setUsernames] = useState(null);
+  const [usernames, setUsernames] = useState([]);
   const [mortys, setMortys] = useState([]);
   const [ovnis, setOvnis] = useState({});
 
@@ -135,10 +136,7 @@ const Grid = ({ id }) => {
     <div>
       <Nav />
       <div className="insta-container">
-        {/* {fetchUsers[1]} */}
-        {/* {fetchUsers} */}
-        {/* {!usernames && [1].map((i) => <Skeleton2 key={i} />)} */}
-
+        <CardMorty />
         <div className="box">
           {fetchMorty}
           {!mortys && [1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} />)}
